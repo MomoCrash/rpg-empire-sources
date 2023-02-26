@@ -13,11 +13,7 @@ public class TilemapControler : MonoBehaviour
     public Tile HightLightTile;
     public Building Building;
 
-    private void Start()
-    {
-        
-    }
-
+    
     public void HightlightTilesInRange(Vector3Int start, Vector3Int end)
     {
 
