@@ -23,7 +23,7 @@ public class SaveSystem : MonoBehaviour
 
         if (File.Exists(_playerDataPath))
         {
-            loadGameData();
+            LoadGameData();
         } else
         {
             IsFirstLoad = true;
@@ -33,11 +33,11 @@ public class SaveSystem : MonoBehaviour
     void OnApplicationQuit()
     {
 
-        saveGameData();
+        SaveGameData();
 
     }
 
-    public void saveGameData()
+    public void SaveGameData()
     {
 
         string playerData = JsonUtility.ToJson(new PlayerData(Player));
@@ -54,7 +54,7 @@ public class SaveSystem : MonoBehaviour
 
     }
 
-    public void loadGameData()
+    public void LoadGameData()
     {
 
         string playerJsonString= File.ReadAllText(_playerDataPath);

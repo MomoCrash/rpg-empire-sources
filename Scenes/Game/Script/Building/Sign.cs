@@ -48,7 +48,7 @@ public class Sign : MonoBehaviour
 
     }
 
-    public void toggleLight()
+    public void ToggleLight()
     {
         if (signLight.enabled)
         {

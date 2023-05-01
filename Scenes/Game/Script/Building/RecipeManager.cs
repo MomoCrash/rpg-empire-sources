@@ -7,12 +7,12 @@ public class RecipeManager : MonoBehaviour
 
     void Start()
     {
-        
+        // TODO
     }
 
     void Update()
     {
-        
+        // TODO
     }
 
 }

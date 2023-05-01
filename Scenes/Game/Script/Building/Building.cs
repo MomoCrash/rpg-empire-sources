@@ -32,7 +32,7 @@ public class Building : MonoBehaviour
 
                 GameObject build = BuildMenu.Buildings[data.AgeIndex].Builds[data.BuildIndex];
                 BuildMenu.SelectedBuildIndex = data.BuildIndex;
-                buildGenerationConstruct(new Vector3Int(data.Position[0], data.Position[1], data.Position[2]), build);
+                BuildGenerationConstruct(new Vector3Int(data.Position[0], data.Position[1], data.Position[2]), build);
             }
 
         }
@@ -67,15 +67,16 @@ public class Building : MonoBehaviour
                 if (tile == buildable)
                 {
 
-                    Collider2D buildCollider = _preview.transform.GetChild(1).GetComponent<Collider2D>();
+                    Collider2D buildCollider = _preview.transform.GetChild(2).GetComponent<Collider2D>();
                     Vector3Int start = Controler.GetCellAtWorldPosition(TileMap, buildCollider.bounds.min);
-                    Vector3Int end = start + new Vector3Int((int)(buildCollider.bounds.size.x), (int)buildCollider.bounds.size.y);
+                    Vector3Int end = Controler.GetCellAtWorldPosition(TileMap, buildCollider.bounds.max);
 
                     if (!Controler.IsUsedTileArea(start, end))
                     {
-                        buildConstruct(mousseCell, BuildMenu.SelectedBuild);
+                        BuildConstruct(mousseCell, BuildMenu.SelectedBuild);
                     } else
                     {
+                        BuildMenu.Player.FastTab.SendFastTabMessageDirect("Déjà utiliser !", 2);
                         return;
                     }
                 }
@@ -92,7 +93,7 @@ public class Building : MonoBehaviour
             _preview.transform.SetParent(Layer.transform);
             _preview.transform.localPosition = new Vector3(0, 0, 0);
             _preview.name = "build preview";
-            _preview.transform.GetChild(0).GetComponent<BoxCollider2D>().isTrigger = true;
+            _preview.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
             _preview.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = false;
         } else
         {
@@ -104,7 +105,7 @@ public class Building : MonoBehaviour
 
     }
 
-    void buildConstruct(Vector3Int buildCell, GameObject building)
+    void BuildConstruct(Vector3Int buildCell, GameObject building)
     {
 
         var itemStacks = new ItemStack[BuildMenu.MaterialsCost.Length];
@@ -115,8 +116,10 @@ public class Building : MonoBehaviour
             print(BuildMenu.Player.Inventory.HasEnoughItem((new ItemStack(Item.GetItem(BuildMenu.MaterialsCost[index]), BuildMenu.MaterialCostAmount[index]))));
         }
 
-        if (!BuildMenu.Player.Inventory.HasEnoughItem(itemStacks))
+        string[] missingItem = BuildMenu.Player.Inventory.HasEnoughItem(itemStacks);
+        if (missingItem.Length > 0)
         {
+            BuildMenu.Player.FastTab.SendFastTabMessageDirect("Manque de " + missingItem[0], 2);
             return;
         } else
         {
@@ -146,7 +149,7 @@ public class Building : MonoBehaviour
 
     }
 
-    void buildGenerationConstruct(Vector3Int buildCell, GameObject building)
+    void BuildGenerationConstruct(Vector3Int buildCell, GameObject building)
     {
 
         GameObject newObject = Instantiate(building, buildCell, Quaternion.identity);

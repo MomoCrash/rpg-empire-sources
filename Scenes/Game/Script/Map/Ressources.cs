@@ -87,7 +87,7 @@ public class Ressources : MonoBehaviour
         while (_canEnable && inventory.UseEnergy(CollectCost))
         {
             _isUsed = true;
-            foreach (int value in Enumerable.Range(1, 10))
+            foreach (int _ in Enumerable.Range(1, 10))
             {
                 if (!_canEnable)
                 {

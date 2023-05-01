@@ -20,6 +20,7 @@ public class BuildManager : MonoBehaviour
 
     [SerializeField] Light2D PrimaryLight;
     [SerializeField] Light2D SecondaryLight;
+    [SerializeField] Animator FlameAnimator;
 
     private DateTime _lastActivate;
     private DateTime _lastGain;
@@ -63,8 +64,10 @@ public class BuildManager : MonoBehaviour
 
                     stacks[index] = new ItemStack(Item.GetItem(WorkMaterialsCost[index]), QuantitiesMaterialsCost[index]);
 
-                    if (!playerManager.Inventory.HasEnoughItem(stacks))
+                    string[] missingItem = playerManager.Inventory.HasEnoughItem(stacks);
+                    if (missingItem.Length > 0)
                     {
+                        playerManager.FastTab.SendFastTabMessageDirect("Manque de " + missingItem[0] , 2);
                         return;
                     }
                 }
@@ -107,6 +110,12 @@ public class BuildManager : MonoBehaviour
             _lastGain = now;
 
         }
+
+    }
+
+    public void ToggleWorkAnimation() {
+
+
 
     }
 

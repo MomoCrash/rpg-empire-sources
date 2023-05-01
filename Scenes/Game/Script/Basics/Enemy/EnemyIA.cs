@@ -17,6 +17,8 @@ public class EnemyIA : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        return;
        
         if (HasNearPlayer(gameObject.transform.position, ViewRange))
         {

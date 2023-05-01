@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
 
     private TextValue fpsText;
 
-    [SerializeField] FastTabManager FastTab;
+    public FastTabManager FastTab;
 
     public int EnergyGainAmount;
     public float EnergyGainInterval;
@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
 
                 var itemId = int.Parse(followingItem.name);
                 Inventory.AddItem(new ItemStack(Item.GetItem(itemId), 1));
-                GameObject.Destroy(followingItem.gameObject);
+                GameObject.Destroy(followingItem);
                 ItemManager.inTransition.Remove(followingItem);
                 followingItems.Remove(followingItem);
                 FastTab.SendFastTabMessage(new FastTab(new ItemStack(Item.GetItem(itemId), 1), 3, DateTime.Now));

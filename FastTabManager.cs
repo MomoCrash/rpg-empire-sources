@@ -8,7 +8,7 @@ public class FastTabManager : MonoBehaviour
 {
 
     [SerializeField] GameObject FastTabModel;
-    private List<FastTab> FastTabs = new List<FastTab>();
+    private readonly List<FastTab> FastTabs = new();
 
     private bool _hasNewTab = false;
 
@@ -20,7 +20,7 @@ public class FastTabManager : MonoBehaviour
         var i = 0;
         foreach (var fastTabObject in FastTabs)
         {
-            TimeSpan timeActive = (DateTime.Now - fastTabObject.Start);
+            TimeSpan timeActive = DateTime.Now - fastTabObject.Start;
             if (timeActive.TotalMilliseconds > fastTabObject.Duration*1000)
             {
                 GameObject.Destroy(fastTabObject.FastTabObject);
@@ -32,10 +32,11 @@ public class FastTabManager : MonoBehaviour
 
         if (_hasNewTab)
         {
-            Dictionary<int, FastTab> fastTabDict = new Dictionary<int, FastTab>();
+            Dictionary<int, FastTab> fastTabDict = new();
             foreach (int index in Enumerable.Range(0, FastTabs.Count))
             {
                 var tab = FastTabs[index];
+                if ( tab.ItemStack == null) { continue; }
                 if ( fastTabDict.ContainsKey(tab.ItemStack.Item.UniqueId) )
                 {
                     FastTab fastTabDictValue = fastTabDict.GetValueOrDefault(tab.ItemStack.Item.UniqueId);
@@ -81,6 +82,22 @@ public class FastTabManager : MonoBehaviour
 
     }
 
+    public void SendFastTabMessageDirect(String message, int duration)
+    {
+
+        var fastTabObject = GameObject.Instantiate(FastTabModel, gameObject.transform);
+        fastTabObject.SetActive(true);
+        fastTabObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "INFO: " + message;
+        fastTabObject.transform.localPosition = new Vector3(baseX, baseY, 0);
+        FastTab messageTab = new(duration, DateTime.Now) { FastTabObject = fastTabObject };
+        FastTabs.Add(messageTab);
+        if (FastTabs.Count > 0)
+        {
+            _hasNewTab = true;
+        }
+
+    }
+
 }
 
 public class FastTab
@@ -94,6 +111,13 @@ public class FastTab
     public FastTab(ItemStack stack, int duration, DateTime start)
     {
         this.ItemStack = stack;
+        this.Duration = duration;
+        this.Start = start;
+    }
+
+    public FastTab(int duration, DateTime start)
+    {
+        this.ItemStack = null;
         this.Duration = duration;
         this.Start = start;
     }

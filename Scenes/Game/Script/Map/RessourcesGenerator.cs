@@ -22,10 +22,6 @@ public class RessourcesGenerator : MonoBehaviour
     public SaveSystem saveSystem;
     public RessourceSave RessourceSave;
 
-    private readonly Vector3[][] _notBuildable = { 
-        new Vector3[] { new Vector3(-5, 4f), new Vector3(6f, -6f) },
-    };
-
     void Start()
     {
 
@@ -64,18 +60,7 @@ public class RessourcesGenerator : MonoBehaviour
             }
 
             currentX += Random.Range(1f, 5f * (density + 1));
-            currentY -= Random.Range(-0.5f, 2f);
-
-            foreach (var vectorPair in _notBuildable)
-            {
-
-                while ( (vectorPair[0].x > currentX && vectorPair[1].x < currentX) && (vectorPair[0].y > currentY && vectorPair[1].y < currentY))
-                {
-                    currentX += 1f;
-                    currentY -= 0.5f;
-                }
-
-            }
+            currentY -= Random.Range(-3f, 10f);
 
             if (currentX > maxRightX)
             {
@@ -83,7 +68,7 @@ public class RessourcesGenerator : MonoBehaviour
             }
             if (currentY < maxDownY)
             {
-                currentY = topLeftY + Random.Range(topLeftY, maxDownY);
+                currentY = topLeftY;
             }
         }
     }

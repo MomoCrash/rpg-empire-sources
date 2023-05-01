@@ -4,10 +4,10 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
 
-    public static Dictionary<GameObject, Vector2> inTransition = new Dictionary<GameObject, Vector2>();
+    public static Dictionary<GameObject, Vector2> inTransition = new();
     private float smooth = 1f;
 
-    private static List<Sprite> textures = new List<Sprite>();
+    private static List<Sprite> textures = new();
 
     void Start()
     {

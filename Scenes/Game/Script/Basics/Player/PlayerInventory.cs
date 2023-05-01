@@ -71,16 +71,16 @@ public class PlayerInventory
         return false;
     }
 
-    public bool HasEnoughItem(ItemStack[] items)
+    public string[] HasEnoughItem(ItemStack[] items)
     {
         foreach ( var item in items )
         {
             if (!HasEnoughItem(item))
             {
-                return false;
+                return new string[1] { item.Item.Name };
             }
         }
-        return true;
+        return new string[0];
     }
 
     public bool HasMaxEnergy()

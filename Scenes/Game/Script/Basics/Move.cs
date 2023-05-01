@@ -21,7 +21,7 @@ public class Move : MonoBehaviour
 
     private DateTime _lastSprintLost;
     private bool _canSprint = true;
-    private bool _canMove = true;
+    readonly bool _canMove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +42,7 @@ public class Move : MonoBehaviour
         {
             sprint = 1;
         }
-        TimeSpan elapsedTime = (DateTime.Now - _lastSprintLost);
+        TimeSpan elapsedTime = DateTime.Now - _lastSprintLost;
 
         player.transform.Translate(0, vert * (speed - Math.Abs(horz * 3)) * sprint * Time.deltaTime, 0);
         player.transform.Translate(horz * (speed - Math.Abs(vert * 3)) * sprint * Time.deltaTime, 0, 0);
@@ -54,6 +54,7 @@ public class Move : MonoBehaviour
             && elapsedTime.TotalMilliseconds > sprintLostInterval 
             && player.GetComponent<PlayerManager>().Inventory.HasEnoughEnergy(1))
         {
+            animator.SetBool("sprint", true);
             _lastSprintLost = DateTime.Now;
             player.GetComponent<PlayerManager>().Inventory.UseEnergy(1);
             _canSprint = true;
@@ -61,9 +62,13 @@ public class Move : MonoBehaviour
         {
             _canSprint = false;
         }
+
+        if (Input.GetAxis("Sprint") == 0) {
+            animator.SetBool("sprint", false);
+        }
         
 
-        if ((Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0))
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             animator.SetBool("move", true);
         }
@@ -72,20 +77,16 @@ public class Move : MonoBehaviour
             animator.SetBool("move", false);
         }
 
-        if (animator != null)
+
+        if (Input.GetAxis("Horizontal") < 0)
         {
-
-            if (Input.GetAxis("Horizontal") < 0)
-            {
-                animator.SetInteger("direction", 0);
-                return;
-            }
-            else if (Input.GetAxis("Horizontal") > 0)
-            {
-                animator.SetInteger("direction", 1);
-                return;
-            }
-
+            animator.SetInteger("direction", 0);
+            return;
+        }
+        else if (Input.GetAxis("Horizontal") > 0)
+        {
+            animator.SetInteger("direction", 1);
+            return;
         }
 
     }

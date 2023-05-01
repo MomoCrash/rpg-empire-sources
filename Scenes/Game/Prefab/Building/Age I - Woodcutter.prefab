@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6627799998536028739}
   - component: {fileID: 8749198076485935172}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4804750885817593520}
   - component: {fileID: 4276573100325348177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WC - OffSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 5109741889829796249}
   - component: {fileID: 7992547766313123954}
   - component: {fileID: 3835098521623209025}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WC - Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,6 +227,7 @@ MonoBehaviour:
   QuantitiesMaterialsCost: 
   PrimaryLight: {fileID: 2972271112190313987}
   SecondaryLight: {fileID: 4245998820686371020}
+  FlameAnimator: {fileID: 0}
 --- !u!114 &3835098521623209025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8022457842168833608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WC - Flower - 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1486076959496759823}
   - component: {fileID: 4973627013295513765}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +359,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -381,7 +382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7657485280882879507}
   - component: {fileID: 495417631296184666}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +443,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -465,7 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3710310103574675856}
   - component: {fileID: 1820567899152603581}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +527,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -548,7 +549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3137809249983854900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WC - Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2553709359194199266}
   - component: {fileID: 3666450392598513041}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +650,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -672,7 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2298735388321961917}
   - component: {fileID: 2258889795883221767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +734,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -756,7 +757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3942935951642866887}
   - component: {fileID: 8277849216474156242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: F_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -817,7 +818,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: -1090203960, guid: aa95c0b24d9867c45bdd630d25dbf79c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -840,7 +841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885726545106585742}
   - component: {fileID: 5760955431404631147}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,7 +902,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -924,7 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8162691724210061970}
   - component: {fileID: 8462858616659815328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: F_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +986,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: -1063314712, guid: aa95c0b24d9867c45bdd630d25dbf79c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1009,7 +1010,7 @@ GameObject:
   - component: {fileID: 6051355309325086025}
   - component: {fileID: 2397343581498237574}
   - component: {fileID: 1399322468118801182}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,7 +1071,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: 1037074160, guid: 436c0fc0912e9c942809d6538a8f0b53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1118,7 +1119,7 @@ MonoBehaviour:
   - {x: 0.018633386, y: -0.19914567, z: 0}
   m_ShapePathHash: -1389816772
   m_Mesh: {fileID: 0}
-  m_InstanceId: 93962
+  m_InstanceId: 101320
 --- !u!1 &5162762657691672491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2454591583633908339}
   - component: {fileID: 6421124127525183559}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank Ground - (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1191,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1350020126, guid: 030cfadd4ef57b245a42c732d1a84010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1214,7 +1215,7 @@ GameObject:
   - component: {fileID: 7760767912457824258}
   - component: {fileID: 8801331594635219552}
   - component: {fileID: 6118241367623371760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WC - Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1277,7 +1278,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 568344373, guid: dabc73f177af0a64a9bac2cffcb637e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1325,7 +1326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6716679207788819589}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Age I - Woodcutter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1350,6 +1351,7 @@ Transform:
   - {fileID: 8022457842168833608}
   - {fileID: 3137809249983854900}
   - {fileID: 6923244327330869724}
+  - {fileID: 694792176861248713}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1363,7 +1365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6923244327330869724}
   - component: {fileID: 4245998820686371020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WC - Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1474,7 +1476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4635979433251471669}
   - component: {fileID: 5863020385197153681}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bank - TopLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,7 +1587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2424494429905854992}
   - component: {fileID: 3650697350312435654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: F_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1646,7 +1648,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: -1063314712, guid: aa95c0b24d9867c45bdd630d25dbf79c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1669,7 +1671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 957676165427765081}
   - component: {fileID: 3045533899944464404}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1730,7 +1732,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1443844115
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 528344990, guid: dabc73f177af0a64a9bac2cffcb637e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1753,7 +1755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202015930651916844}
   - component: {fileID: 2972271112190313987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1864,7 +1866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2276483936139569488}
   - component: {fileID: 2866036045701431430}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: F_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1925,7 +1927,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 185493569
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: -1063314712, guid: aa95c0b24d9867c45bdd630d25dbf79c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1938,3 +1940,133 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &686012769689875785
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6716679207788819589}
+    m_Modifications:
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378873053937077336, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_Size.x
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378873053937077336, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_Size.y
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378873053937077336, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eeb6ad22c1612df45980123f77b722b0, type: 3}
+    - target: {fileID: 3378873053937077336, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407180906324385018, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_Name
+      value: Minimap Icon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407180906324385018, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+--- !u!224 &694792176861248713 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
+  m_PrefabInstance: {fileID: 686012769689875785}
+  m_PrefabAsset: {fileID: 0}
