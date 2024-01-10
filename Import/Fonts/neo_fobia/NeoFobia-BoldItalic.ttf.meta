@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 2f828b0a3882a674b9aa94aeb363a7a3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Neo Fobia
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 36b4b1d4def5e024081d1f26cc0aaabc, type: 3}
+  - {fileID: 12800000, guid: 0353eb5b2af00c443a59d529783449a2, type: 3}
+  - {fileID: 12800000, guid: 3a48463ec0917e14db2513a4a25ae6da, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
