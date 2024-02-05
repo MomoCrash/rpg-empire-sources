@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +44,6 @@ public class InventoryMenu : MonoBehaviour
     private void UpdateInventory()
     {
 
-        var itemNumber = _inventory.Content.Count;
         var nextX = 83;
         var nextY = 305;
 
@@ -86,7 +86,7 @@ public class InventoryMenu : MonoBehaviour
 
         slot.transform.localPosition = new Vector3(x, y, 0);
 
-        slot.transform.Find("Case - Name").GetComponent<Text>().text = stack.Item.Name + " x " + stack.Amount;
+        slot.transform.Find("Case - Name").GetComponent<TextMeshProUGUI>().text = stack.Item.Name + " x " + stack.Amount;
         slot.transform.Find("Case - Icon").GetComponent<Image>().sprite = ItemManager.GetMaterialSprite(stack.Item.TextureIndex);
 
     }

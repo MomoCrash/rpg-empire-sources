@@ -40,9 +40,11 @@ public class BuildingMenu : MonoBehaviour
 
     public void OpenMenu()
     {
+        print(IsOpen);
         if (IsOpen)
         {
             CloseMenu();
+            return;
         }
         ShowPage(0);
         IsOpen = true;

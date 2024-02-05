@@ -45,15 +45,29 @@ public class Move : MonoBehaviour
 
         float vert = Joystick.Vertical;
         float horz = Joystick.Horizontal;
-        float sprint = sprintSpeed;
-        if (!_canSprint)
+
+        float sprint = 1;
+        bool canSprint = false;
+
+        TimeSpan elapsedTime = DateTime.Now - _lastSprintLost;
+
+        if (lockSprint > 1.5f && elapsedTime.TotalMilliseconds > sprintLostInterval 
+            && player.GetComponent<PlayerManager>().Inventory.HasEnoughEnergy(1))
         {
-            sprint = 1;
-        } else if (lockSprint > .5f)
+            print("Sprint");
+            Animator.SetBool("sprint", true);
+            _lastSprintLost = DateTime.Now;
+            player.GetComponent<PlayerManager>().Inventory.UseEnergy(1);
+            canSprint = true;
+        } else
+        {
+            Animator.SetBool("sprint", false);
+        }
+
+        if (lockSprint > 1.5f && canSprint)
         {
             sprint = sprintSpeed;
         }
-        TimeSpan elapsedTime = DateTime.Now - _lastSprintLost;
 
         player.transform.Translate(0, vert * (speed - Math.Abs(horz * 3)) * sprint * Time.deltaTime, 0);
         player.transform.Translate(horz * (speed - Math.Abs(vert * 3)) * sprint * Time.deltaTime, 0, 0);
@@ -61,23 +75,6 @@ public class Move : MonoBehaviour
         cameraPosition = targetObject.position + initalOffset;
         transform.position = Vector2.Lerp(transform.position, cameraPosition, smoothness * Time.fixedDeltaTime);
 
-        if (lockSprint > .5f
-            && elapsedTime.TotalMilliseconds > sprintLostInterval 
-            && player.GetComponent<PlayerManager>().Inventory.HasEnoughEnergy(1))
-        {
-            Animator.SetBool("sprint", true);
-            _lastSprintLost = DateTime.Now;
-            player.GetComponent<PlayerManager>().Inventory.UseEnergy(1);
-            _canSprint = true;
-        } else if (!player.GetComponent<PlayerManager>().Inventory.HasEnoughEnergy(1))
-        {
-            _canSprint = false;
-        }
-
-        if (lockSprint == 0) {
-            Animator.SetBool("sprint", false);
-        }
-        
 
         if (vert != 0 || horz != 0)
         {

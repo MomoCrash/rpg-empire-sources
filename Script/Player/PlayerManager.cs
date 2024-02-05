@@ -43,13 +43,6 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-        fpsText.value = ((int)(1.0f / Time.smoothDeltaTime));
-
-    }
-
     void FixedUpdate()
     {
 
@@ -61,9 +54,10 @@ public class PlayerManager : MonoBehaviour
         }
 
         var animator = gameObject.GetComponent<Animator>();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
 
+            print("Frappe");
             if (ObjectDetector.InRangeMobs.Count > 0)
             {
 

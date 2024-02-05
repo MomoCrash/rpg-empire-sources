@@ -32,16 +32,15 @@ public class BuildClickManager : MonoBehaviour
             List<RaycastResult> results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
             if (results.Count < 1) {
-                HideMenu();
-                if (BuildingMenu.IsOpen)
+                CloseMenu(false);
+            } else
+            {
+                foreach (var result in results)
                 {
-                    BuildingMenu.CloseMenu();
-                    return;
-                }
-                if (InventoryMenu.IsOpen)
-                {
-                    InventoryMenu.CloseInventory();
-                    return;
+                    if (result.gameObject.CompareTag("Controller"))
+                    {
+                        CloseMenu(true);
+                    }
                 }
             }
 
@@ -68,12 +67,30 @@ public class BuildClickManager : MonoBehaviour
 
                         var buildManager = collided.gameObject.GetComponent<BuildManager>();
 
-                        buildManager.EnableBuilding();
-                        ShowMenu(buildManager);
+                        if (!BuildingMenu.IsOpen)
+                        {
+                            buildManager.EnableBuilding();
+                            ShowMenu(buildManager);
+                        }
 
                     }
                 }
             }
+        }
+    }
+
+    public void CloseMenu(bool all)
+    {
+        HideMenu();
+        if (BuildingMenu.IsOpen || BuildingMenu.SelectedBuild != null)
+        {
+            BuildingMenu.CloseMenu();
+            if (!all) return;
+        }
+        if (InventoryMenu.IsOpen)
+        {
+            InventoryMenu.CloseInventory();
+            if (!all) return;
         }
     }
 

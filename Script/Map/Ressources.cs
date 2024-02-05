@@ -69,6 +69,7 @@ public class Ressources : MonoBehaviour
             _canEnable = true;
             _currentUser = collision.gameObject;
             _currentUserManager = _currentUser.GetComponent<PlayerManager>();
+            _currentUserManager.Inventory.ActionProgress = 0;
             _currentUser.transform.GetChild(0).gameObject.SetActive(true);
         }
 
@@ -80,9 +81,9 @@ public class Ressources : MonoBehaviour
         {
             _isUsed = false;
             _canEnable = false;
-            _currentUserManager.Inventory.ActionProgress = 0;
-            _currentUser.GetComponent<Animator>().SetBool("used", false);
-            _currentUser.transform.GetChild(0).gameObject.SetActive(false);
+            collision.GetComponent<PlayerManager>().Inventory.ActionProgress = 0;
+            collision.GetComponent<Animator>().SetBool("used", false);
+            collision.transform.GetChild(0).gameObject.SetActive(false);
             _currentUserManager = null;
             _currentUser = null;
         }
