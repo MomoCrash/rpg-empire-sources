@@ -71,6 +71,7 @@ public class RessourcesGenerator : MonoBehaviour
                 currentY = topLeftY;
             }
         }
+
     }
 
     public void RemoveRessourceData(Vector3 position)

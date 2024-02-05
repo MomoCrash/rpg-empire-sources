@@ -3,11 +3,15 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System;
+using UnityEngine.UI;
+using System.Collections;
 
 public class FastTabManager : MonoBehaviour
 {
 
     [SerializeField] GameObject FastTabModel;
+    [SerializeField] GameObject FastTabModelLarge;
+
     private readonly List<FastTab> FastTabs = new();
 
     private bool _hasNewTab = false;
@@ -43,8 +47,8 @@ public class FastTabManager : MonoBehaviour
                 {
                     FastTab fastTabDictValue = fastTabDict.GetValueOrDefault(tab.ItemStack.Item.UniqueId);
                     fastTabDictValue.ItemStack.Amount += tab.ItemStack.Amount;
-                    fastTabDictValue.FastTabObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text 
-                        = fastTabDictValue.ItemStack.Item.Name + "x" + fastTabDictValue.ItemStack.Amount;
+                    fastTabDictValue.FastTabObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text 
+                        = fastTabDictValue.ItemStack.Item.Name + " x" + fastTabDictValue.ItemStack.Amount.ToString();
                     fastTabDictValue.Start = DateTime.Now;
 
                     GameObject.Destroy(tab.FastTabObject);
@@ -74,7 +78,9 @@ public class FastTabManager : MonoBehaviour
 
         var fastTabObject = GameObject.Instantiate(FastTabModel, gameObject.transform);
         fastTabObject.SetActive(true);
-        fastTabObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = tab.ItemStack.Item.Name + " x " + tab.ItemStack.Amount;
+        fastTabObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = tab.ItemStack.Item.Name + " x" + tab.ItemStack.Amount.ToString();
+        fastTabObject.transform.GetChild(1).GetComponent<Image>().sprite
+            = ItemManager.GetMaterialSprite(tab.ItemStack.Item.TextureIndex);
         fastTabObject.transform.localPosition = new Vector3(baseX, baseY, 0);
         tab.FastTabObject = fastTabObject;
         FastTabs.Add(tab);
@@ -88,9 +94,9 @@ public class FastTabManager : MonoBehaviour
     public void SendFastTabMessageDirect(String message, int duration)
     {
 
-        var fastTabObject = GameObject.Instantiate(FastTabModel, gameObject.transform);
+        var fastTabObject = GameObject.Instantiate(FastTabModelLarge, gameObject.transform);
         fastTabObject.SetActive(true);
-        fastTabObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "INFO: " + message;
+        fastTabObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = message;
         fastTabObject.transform.localPosition = new Vector3(baseX, baseY, 0);
         FastTab messageTab = new(duration, DateTime.Now) { FastTabObject = fastTabObject };
         FastTabs.Add(messageTab);

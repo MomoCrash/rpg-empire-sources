@@ -1,16 +1,21 @@
 using System;
+using System.Collections;
 using System.Linq;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class BuildManager : MonoBehaviour
 {
 
+    public int BuildingID;
+
     public Material[] BuildMaterialsCost;
     public int[] BuildAmountCost;
 
-    [SerializeField] int WorkDuration;
-    [SerializeField] int GainAfter;
+    public int WorkDuration;
+    public int GainAfter;
     public Material[] MaterialsGain;
     public int[] QuantitiesGain;
 
@@ -18,110 +23,88 @@ public class BuildManager : MonoBehaviour
     public Material[] WorkMaterialsCost;
     public int[] QuantitiesMaterialsCost;
 
-    [SerializeField] Light2D PrimaryLight;
-    [SerializeField] Light2D SecondaryLight;
-    [SerializeField] Animator FlameAnimator;
+    public Light2D[] Lights;
 
-    private DateTime _lastActivate;
-    private DateTime _lastGain;
+    [TextArea(3, 5)]
+    public string BuildTitle;
+    [TextArea(3, 5)]
+    public string BuildDescription;
+
+    public Sprite BuildIcon;
 
     private bool _isActivated = false;
-    private bool _canActivate = false;
 
-    void Start()
+    IEnumerator BuildingWork()
     {
 
-        _lastActivate = DateTime.Now;
-        _lastGain = DateTime.Now;
+        int iteration = WorkDuration/GainAfter;
 
-    }
-
-    void FixedUpdate()
-    {
-
-        DateTime now = DateTime.Now;
-
-        TimeSpan timeActive = (now - _lastActivate);
-        TimeSpan timeGain = (now - _lastGain);
-
-        if (!_isActivated && _canActivate && Input.GetMouseButton(1))
-        {
-            PlayerManager playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
-
-            if (WorkMaterialsCost.Length > 0)
-            {
-                ItemStack[] stacks = new ItemStack[WorkMaterialsCost.Length];
-                foreach ( var index in Enumerable.Range(0, WorkMaterialsCost.Length) )
-                {
-
-                    stacks[index] = new ItemStack(Item.GetItem(WorkMaterialsCost[index]), QuantitiesMaterialsCost[index]);
-
-                    string[] missingItem = playerManager.Inventory.HasEnoughItem(stacks);
-                    if (missingItem.Length > 0)
-                    {
-                        playerManager.FastTab.SendFastTabMessageDirect("Manque de " + missingItem[0] , 2);
-                        return;
-                    }
-                }
-
-                foreach ( var itemStack in stacks )
-                {
-
-                    playerManager.Inventory.RemoveItem(itemStack);
-
-                }
-
-            }
-
-            if (WorkEnergyCost > 0)
-            {
-
-                if (!playerManager.Inventory.UseEnergy(WorkEnergyCost))
-                {
-                    return;
-                }
-            }
-
-            PrimaryLight.enabled = true;
-            SecondaryLight.enabled = true;
-            _isActivated = true;
-            _lastActivate = now;
-            _lastGain = now;
-            return;
-        }
-
-        if (!_isActivated)
-        {
-            return;
-        }
-
-        if (timeActive.TotalMilliseconds >= WorkDuration*1000)
-        {
-            _isActivated = false;
-            PrimaryLight.enabled = false;
-            SecondaryLight.enabled = false;
-            return;
-        }
-
-        if (timeGain.TotalMilliseconds >= GainAfter*1000)
+        foreach (var itNumber in Enumerable.Range(0, iteration))
         {
             int index = UnityEngine.Random.Range(0, MaterialsGain.Length);
             var itemStack = new ItemStack(Item.GetItem(MaterialsGain[index]), UnityEngine.Random.Range(1, QuantitiesGain[index] + 1));
             ItemManager.DropItemStackInRange(gameObject.transform.position, itemStack, -1, 1, -2, 1);
-            _lastGain = now;
-
+            yield return new WaitForSeconds(GainAfter);
         }
 
+        _isActivated = false;
+        foreach (var item in Lights)
+        {
+            item.enabled = false;
+        }
+        _isActivated = false;
+        yield return null;
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void EnableBuilding()
     {
-        _canActivate = true;
+        if (!_isActivated)
+        {
+            _isActivated = HasEnoughtRessource();
+            StartCoroutine(BuildingWork());
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public bool HasEnoughtRessource()
     {
-        _canActivate = false;
+        PlayerManager playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
+
+        ItemStack[] stacks = new ItemStack[WorkMaterialsCost.Length];
+        if (WorkMaterialsCost.Length > 0)
+        {
+            foreach (var index in Enumerable.Range(0, WorkMaterialsCost.Length))
+            {
+                stacks[index] = new ItemStack(Item.GetItem(WorkMaterialsCost[index]), QuantitiesMaterialsCost[index]);
+            }
+        }
+
+        string[] missingItem = playerManager.Inventory.HasEnoughItem(stacks);
+        if (missingItem.Length > 0)
+        {
+            playerManager.FastTab.SendFastTabMessageDirect("Manque de " + missingItem[0], 2);
+            return false;
+        }
+
+        if (WorkEnergyCost > 0)
+        {
+            if (!playerManager.Inventory.UseEnergy(WorkEnergyCost))
+            {
+                playerManager.FastTab.SendFastTabMessageDirect("Pas assez d'energie", 2);
+                return false;
+            }
+        }
+
+        foreach (var itemStack in stacks)
+        {
+            playerManager.Inventory.RemoveItem(itemStack);
+        }
+
+        foreach (var item in Lights)
+        {
+            item.enabled = true;
+        }
+        return true;
     }
 
 }

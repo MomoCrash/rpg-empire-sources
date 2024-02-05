@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
 
     public RectTransform BarStart;
     public RectTransform[] BarEnd;
+    public Slider SliderBar;
 
     public int MaxSize;
 
@@ -37,6 +39,11 @@ public class ProgressBar : MonoBehaviour
     public void SetScale(float max, float current)
     {
         BarStart.localScale = new Vector3(current * 0.5f / max, 0.5f, 1); ;
+    }
+
+    public void SetValue(float max, float current)
+    {
+        SliderBar.value = current / max;
     }
 
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 37476462471886674}
   - component: {fileID: 37476462471886677}
   - component: {fileID: 37476462471886676}
+  - component: {fileID: 1553307989385907305}
   - component: {fileID: 7518151442890036195}
   - component: {fileID: 37476462471886679}
   - component: {fileID: 37476462471886664}
@@ -115,6 +116,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -129,6 +136,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -145,6 +171,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13222787, y: 0.03712833}
   m_EdgeRadius: 0
+--- !u!114 &1553307989385907305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37476462471886672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c16f6ae4f6bef49a12053570ca5511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestsGroups:
+  - Name: Tutorial
+    Description: 
+    Quests:
+    - Name: Kill Mobs
+      Description: Kill
+      Objective: 3
+      ObjectivesAmount: 3
+      ObjectivesID: 00000000
+    - Name: Collect Wood
+      Description: Collect Wood
+      Objective: 0
+      ObjectivesAmount: 20
+      ObjectivesID: 0b000000
+  CurrentGroupProgression: 0
+  CurrentQuestProgression: 0
+  QuestProgressBar: {fileID: 0}
+  QuestText: {fileID: 0}
+  CurrentQuest:
+    Name: 
+    Description: 
+    Objective: 0
+    ObjectivesAmount: 1
+    ObjectivesID: 
+  InQuestProgression: 0
 --- !u!114 &7518151442890036195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +237,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pseudo: MomoCrash
+  AttackRange: 5
+  Damage: 10
+  AttackCooldown: 0.1
+  AttackEnergyCost: 4
+  CriticalMultiplier: 1.2
+  EnergyGainAmount: 2
+  EnergyGainInterval: 1.5
   Inventory:
     Content: []
     ActionProgress: 0
@@ -181,12 +251,13 @@ MonoBehaviour:
     Health: 100
     MaxEnergy: 200
     Energy: 200
+  ObjectDetector: {fileID: 0}
+  HealthBar: {fileID: 0}
+  StaminaBar: {fileID: 0}
+  ActionBar: {fileID: 0}
   CurrentBuilding: {fileID: 0}
   CurrentRessource: 0
   FastTab: {fileID: 0}
-  EnergyGainAmount: 2
-  EnergyGainInterval: 1.5
-  pickupRange: 3
 --- !u!114 &37476462471886664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +313,7 @@ MonoBehaviour:
     BuildsData: []
 --- !u!95 &37476462471886678
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -259,7 +330,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2933215850964995881
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,12 +472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c4e9419c6f7042922bb25517df601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barStart: {fileID: 1563494364610066275}
-  barEnd: []
-  maxBarSize: 0.5
-  isHealth: 0
-  isEnergy: 0
-  isActionBar: 1
+  BarStart: {fileID: 0}
+  BarEnd: []
+  SliderBar: {fileID: 0}
+  MaxSize: 0
 --- !u!1 &5556551865634616790
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +659,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 37476462471886675}
     m_Modifications:
     - target: {fileID: 9377971000822144, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
@@ -716,6 +787,9 @@ PrefabInstance:
       value: Square
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf446b090d0e224790b8b609f6587a4, type: 3}
 --- !u!224 &5028710254922788693 stripped
 RectTransform:

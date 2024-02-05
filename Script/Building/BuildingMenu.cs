@@ -38,30 +38,23 @@ public class BuildingMenu : MonoBehaviour
 
     }
 
-    private void Update()
+    public void OpenMenu()
     {
-
-        if (Input.GetKeyDown(KeyCode.R) && !IsOpen && !HasChoose)
-        {
-            ShowPage(0);
-            IsOpen = true;
-            _animator.SetBool("open", true);
-        } else if (Input.GetKeyDown(KeyCode.R) && !IsOpen && HasChoose){
-            CloseMenu();
-        } else if (Input.GetKeyDown(KeyCode.R) && IsOpen && HasChoose)
-        {
-            CloseMenu();
-        } else if (Input.GetKeyDown(KeyCode.R) && IsOpen)
+        if (IsOpen)
         {
             CloseMenu();
         }
-
+        ShowPage(0);
+        IsOpen = true;
+        _animator.SetBool("open", true);
     }
 
     public void PreviousPage()
     {
 
         if (CurrentPage == 0) {
+            CurrentPage = Buildings.Length - 1;
+            ShowPage(CurrentPage);
             return;
         }
 
@@ -74,6 +67,8 @@ public class BuildingMenu : MonoBehaviour
     {
 
         if (CurrentPage == Buildings.Length-1) {
+            CurrentPage = 0;
+            ShowPage(CurrentPage);
             return;
         }
 
@@ -106,18 +101,17 @@ public class BuildingMenu : MonoBehaviour
         {
 
             var build = Buildings[pageIndex].Builds[index].transform.GetChild(0);
-            var buildInfo = build.GetComponent<BuildingSign>();
             var buildManager = build.GetComponent<BuildManager>();
 
-            var gain = buildInfo.FormatedGain;
-            var workCost = buildInfo.FormatedWorkCost;
-            var icon = buildInfo.Sprite;
+            var icon = buildManager.BuildIcon;
 
-            string cost = "Cost :\n";
-            foreach (int costIndex in Enumerable.Range(0, buildManager.BuildMaterialsCost.Length))
+            string cost = "Cout: ";
+            var costLen = buildManager.BuildMaterialsCost.Length;
+            foreach (int costIndex in Enumerable.Range(0, costLen-1))
             {
-                cost += buildManager.BuildMaterialsCost[costIndex] + "x" + buildManager.BuildAmountCost[costIndex] + "\n";
+                cost += buildManager.BuildMaterialsCost[costIndex] + " x" + buildManager.BuildAmountCost[costIndex] + " | ";
             }
+            cost += buildManager.BuildMaterialsCost[costLen-1] + " x" + buildManager.BuildAmountCost[costLen-1];
 
             Vector3 vector = new(BaseX, (BaseY + (CaseSize * -(index))), 0);
 
@@ -125,10 +119,8 @@ public class BuildingMenu : MonoBehaviour
             newCase.transform.SetParent(gameObject.transform);
             newCase.transform.localScale = new Vector3(0.5f, 0.5f, 1);
             newCase.transform.localPosition = vector;
-            newCase.transform.Find("Case - Name").GetComponent<Text>().text = buildInfo.TitleText;
-            newCase.transform.Find("Case - Description").GetComponent<Text>().text = buildInfo.ContentText;
-            newCase.transform.Find("Case - Gain").GetComponent<Text>().text = buildInfo.FormatedGain;
-            newCase.transform.Find("Case - Cons").GetComponent<Text>().text = workCost;
+            newCase.transform.Find("Case - Name").GetComponent<Text>().text = buildManager.BuildTitle;
+            newCase.transform.Find("Case - Description").GetComponent<Text>().text = buildManager.BuildDescription;
             newCase.transform.Find("Case - Price").GetComponent<Text>().text = cost;
             newCase.transform.Find("Case - Icon").GetComponent<Image>().sprite = icon;
             var a = index;
@@ -141,7 +133,7 @@ public class BuildingMenu : MonoBehaviour
 
     }
 
-    private void CloseMenu()
+    public void CloseMenu()
     {
         SelectedBuild = null;
         HasChoose = false;
@@ -185,5 +177,9 @@ public enum Age
     AGE_I,
     AGE_II,
     AGE_III,
+    AGE_IV,
+    AGE_V,
+    AGE_VI,
+    AGE_XX
 
 }

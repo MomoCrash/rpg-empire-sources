@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
 
 [System.Serializable]
 public class PlayerInventory
@@ -10,10 +8,12 @@ public class PlayerInventory
 
     public float ActionProgress = 0;
 
-    public int MaxHealth;
-    public int Health;
-    public int MaxEnergy;
+    public float MaxHealth;
+    public float Health;
+    public float HealthLevel;
+    public float MaxEnergy;
     public float Energy;
+    public float EnergyLevel;
 
     public PlayerInventory()
     {
@@ -58,6 +58,16 @@ public class PlayerInventory
         
     }
 
+    public ItemStack GetItemStack(Item item)
+    {
+        var index = Content.FindIndex(it => it.Item.Equals(item));
+        if (index > -1)
+        {
+            return Content[index];
+        }
+        return new ItemStack(item, 0);
+    }
+
     public bool HasEnoughItem(ItemStack item)
     {
         var index = Content.FindIndex(it => it.Item.Equals(item.Item));
@@ -75,6 +85,10 @@ public class PlayerInventory
     {
         foreach ( var item in items )
         {
+            if (item is null)
+            {
+                continue;
+            }
             if (!HasEnoughItem(item))
             {
                 return new string[1] { item.Item.Name };
@@ -88,12 +102,12 @@ public class PlayerInventory
         return Energy >= MaxEnergy;
     }
 
-    public bool HasEnoughEnergy(int actionCost) 
+    public bool HasEnoughEnergy(float actionCost) 
     {
         return Energy >= actionCost;
     }
 
-    public bool Damage(int damage)
+    public bool Damage(float damage)
     {
         if (Health > damage)
         {
@@ -103,7 +117,7 @@ public class PlayerInventory
         return false;
     }
 
-    public bool UseEnergy(int amount)
+    public bool UseEnergy(float amount)
     {
         if (HasEnoughEnergy(amount)) 
         {

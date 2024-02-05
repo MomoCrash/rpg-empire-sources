@@ -109,7 +109,6 @@ public class Building : MonoBehaviour
     {
 
         var itemStacks = new ItemStack[BuildMenu.MaterialsCost.Length];
-        print(BuildMenu.MaterialsCost.Length);
         foreach ( int index in Enumerable.Range(0, BuildMenu.MaterialsCost.Length))
         {
             itemStacks[index] = new ItemStack(Item.GetItem(BuildMenu.MaterialsCost[index]), BuildMenu.MaterialCostAmount[index]);
@@ -146,6 +145,8 @@ public class Building : MonoBehaviour
 
         Controler.HightlightTilesInRange(start, end);
         Controler.SetBuildMapState(false);
+
+        BuildMenu.Player.gameObject.GetComponent<QuestManager>().BuildBuilding(newObject.transform.GetChild(0).GetComponent<BuildManager>().BuildingID);
 
     }
 

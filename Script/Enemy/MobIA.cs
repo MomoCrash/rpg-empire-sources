@@ -8,6 +8,7 @@ public class MobIA : MonoBehaviour
 
     [Header("Mob parameters")]
     public MobType Type;
+    public int MobID = 0;
     public float Strenght;
     public float MaxHealth;
     public float Health;
@@ -54,15 +55,22 @@ public class MobIA : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Player") || collision.CompareTag("Mobs")) 
+        var collisionTag = collision.tag;
+
+        if (collisionTag == "Mobs")
         {
+            var collisionType = collision.gameObject.GetComponent<MobIA>().Type;
 
             if (Type == MobType.PASISVE)
             {
                 CurrentState = MobState.RUN_AWAY;
                 PlayerInRange = collision.gameObject;
             }
-
+        }
+        else if (collisionTag == "Player")
+        {
+            CurrentState = MobState.RUN_AWAY;
+            PlayerInRange = collision.gameObject;
         }
 
     }
@@ -93,6 +101,10 @@ public class MobIA : MonoBehaviour
             {
                 print(loot.Item.Name);
                 ItemManager.DropItemStackInRange(gameObject.transform.position, loot, -1, 1, -1, 1);
+            }
+            if (PlayerInRange != null && PlayerInRange.CompareTag("Player"))
+            {
+                PlayerInRange.GetComponent<QuestManager>().KillMob(MobID);
             }
             GameObject.Destroy(gameObject);
         }

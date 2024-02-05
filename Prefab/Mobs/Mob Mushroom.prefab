@@ -51,12 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c4e9419c6f7042922bb25517df601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barStart: {fileID: 8416306682562678916}
-  barEnd: []
-  maxBarSize: 0.5
-  isHealth: 0
-  isEnergy: 0
-  isActionBar: 0
+  BarStart: {fileID: 0}
+  BarEnd: []
+  SliderBar: {fileID: 0}
+  MaxSize: 0
 --- !u!1 &1949943111681613623
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,17 +408,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  Strenght: 0
-  MaxHealth: 0
-  Health: 0
-  Resistance: 0
+  MobID: 0
+  Strenght: 1
+  MaxHealth: 50
+  Health: 50
+  Resistance: 1.2
   Speed: 0.3
   MoveRange: 5
   MoveTimeMin: 1
   MoveTimeMax: 3
-  table:
-    Materials: 0c000000
-    Quantities: 32000000
+  Loots:
+    Materials: 0c0000000f0000000e00000001000000
+    Quantities: 0100000003000000050000001e000000
+  dropNumber: 10
   CurrentState: 0
   _moveVector: {x: 0, y: 0, z: 0}
   _speedMultiplier: 1
@@ -428,6 +428,7 @@ MonoBehaviour:
   _moveTime: 0
   _waitTime: 0
   PlayerInRange: {fileID: 0}
+  HealthBar: {fileID: 3841891736376233892}
 --- !u!114 &9008105749891834299
 MonoBehaviour:
   m_ObjectHideFlags: 0

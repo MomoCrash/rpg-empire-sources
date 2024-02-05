@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ressources : MonoBehaviour
 {
 
+    [Header("Ressources parameters")]
     [SerializeField] [Range(1, 2000)] int maxRessourceUse;
 
     [SerializeField] Material[] Drops;
@@ -12,6 +13,8 @@ public class Ressources : MonoBehaviour
 
     [SerializeField] [Range(1, 200)] int CollectCost = 5;
     [SerializeField] [Range(1, 60)] float Duration = 1;
+
+    public int RessourceType;
 
     private Item[] _dropableItems;
     private bool _canEnable = false;
@@ -89,6 +92,7 @@ public class Ressources : MonoBehaviour
     {
         var inventory = _currentUserManager.Inventory;
         if (_currentUserManager.CurrentRessource != id) yield return null;
+        if (inventory == null) yield return null;
         var animator = _currentUser.GetComponent<Animator>();
         while (_canEnable && inventory.UseEnergy(CollectCost))
         {
@@ -128,7 +132,7 @@ public class Ressources : MonoBehaviour
 
                     ItemStack stack = new(_dropableItems[i], Random.Range(0, MaxAmount[i]));
                     ItemManager.DropItemStackInRange(gameObject.transform.position, stack, -1f, 1.3f, -2.6f, 10f);
-
+                    _currentUser.GetComponent<QuestManager>().BreakRessource(RessourceType);
 
                 }
 

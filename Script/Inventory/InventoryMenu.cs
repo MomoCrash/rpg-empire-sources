@@ -22,23 +22,17 @@ public class InventoryMenu : MonoBehaviour
 
     }
 
-    void Update()
+    public void OpenInventory()
     {
+        UpdateInventory();
+        gameObject.GetComponent<Animator>().SetBool("open", true);
+        IsOpen = true;
+    }
 
-        if (Input.GetKeyDown(KeyCode.E) && !IsOpen)
-        {
-
-            UpdateInventory();
-            gameObject.GetComponent<Animator>().SetBool("open", true);
-            IsOpen = true;
-
-        } else if (Input.GetKeyDown(KeyCode.E) && IsOpen)
-        {
-
-            gameObject.GetComponent<Animator>().SetBool("open", false);
-            IsOpen = false;
-
-        }
+    public void CloseInventory()
+    {
+        gameObject.GetComponent<Animator>().SetBool("open", false);
+        IsOpen = false;
     }
 
     /**

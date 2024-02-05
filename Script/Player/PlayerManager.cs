@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class PlayerManager : MonoBehaviour
     public string pseudo = "Michelus";
     public float AttackRange = 5.0f;
     public float Damage = 10.0f;
+    public float AttackCooldown = 0.1f;
+    public float AttackEnergyCost = 4.0f;
+    public float CriticalMultiplier = 1.2f;
+
+    public float EnergyGainAmount;
+    public float EnergyGainInterval;
 
     [Header("Utils")]
 
@@ -21,14 +28,9 @@ public class PlayerManager : MonoBehaviour
     public GameObject CurrentBuilding;
     public int CurrentRessource;
 
-    private TextValue fpsText;
-
     public FastTabManager FastTab;
 
-    public float EnergyGainAmount;
-    public float EnergyGainInterval;
-
-
+    private TextValue fpsText;
 
     // Start is called before the first frame update
     void Start()
@@ -58,14 +60,24 @@ public class PlayerManager : MonoBehaviour
             ActionBar.SetScale(10, Inventory.ActionProgress);
         }
 
-        if (Input.GetMouseButton(0))
+        var animator = gameObject.GetComponent<Animator>();
+        if (Input.GetMouseButtonDown(0))
         {
 
             if (ObjectDetector.InRangeMobs.Count > 0)
             {
-                ObjectDetector.InRangeMobs[0].GetComponent<MobIA>().Damage(Damage);
+
+                if (Inventory.UseEnergy(AttackEnergyCost))
+                {
+                    ObjectDetector.InRangeMobs[0].GetComponent<MobIA>().Damage(Damage * UnityEngine.Random.Range(1, CriticalMultiplier));
+                    animator.SetBool("used", true);
+                }
+
             }
 
+        } else
+        {
+            animator.SetBool("used", false);
         }
 
     }

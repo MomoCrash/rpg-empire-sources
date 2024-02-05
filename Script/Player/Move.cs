@@ -4,6 +4,8 @@ using System;
 public class Move : MonoBehaviour
 {
 
+    public Joystick Joystick;
+
     [SerializeField] int speed = 10;
     [SerializeField] float sprintSpeed = 1.2f;
     [SerializeField] int sprintLostInterval;
@@ -24,6 +26,8 @@ public class Move : MonoBehaviour
     private bool _canSprint = true;
     readonly bool _canMove = true;
 
+    private float lockSprint = .0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +41,17 @@ public class Move : MonoBehaviour
     void FixedUpdate()
     {
 
-        float vert = Input.GetAxis("Vertical");
-        float horz = Input.GetAxis("Horizontal");
-        float sprint = (Input.GetAxis("Sprint") + 1) * sprintSpeed;
+        print(lockSprint);
+
+        float vert = Joystick.Vertical;
+        float horz = Joystick.Horizontal;
+        float sprint = sprintSpeed;
         if (!_canSprint)
         {
             sprint = 1;
+        } else if (lockSprint > .5f)
+        {
+            sprint = sprintSpeed;
         }
         TimeSpan elapsedTime = DateTime.Now - _lastSprintLost;
 
@@ -52,7 +61,7 @@ public class Move : MonoBehaviour
         cameraPosition = targetObject.position + initalOffset;
         transform.position = Vector2.Lerp(transform.position, cameraPosition, smoothness * Time.fixedDeltaTime);
 
-        if (Input.GetAxis("Sprint") > 0 
+        if (lockSprint > .5f
             && elapsedTime.TotalMilliseconds > sprintLostInterval 
             && player.GetComponent<PlayerManager>().Inventory.HasEnoughEnergy(1))
         {
@@ -65,13 +74,14 @@ public class Move : MonoBehaviour
             _canSprint = false;
         }
 
-        if (Input.GetAxis("Sprint") == 0) {
+        if (lockSprint == 0) {
             Animator.SetBool("sprint", false);
         }
         
 
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        if (vert != 0 || horz != 0)
         {
+            lockSprint += Time.fixedDeltaTime;
             Animator.SetBool("move", true);
             if (!PlayerAudio.isPlaying) {
                 PlayerAudio.Play();
@@ -79,16 +89,17 @@ public class Move : MonoBehaviour
         }
         else
         {
+            lockSprint = 0;
             Animator.SetBool("move", false);
         }
 
 
-        if (Input.GetAxis("Horizontal") < 0)
+        if (horz < 0)
         {
             Animator.SetInteger("direction", 0);
             return;
         }
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (horz > 0)
         {
             Animator.SetInteger("direction", 1);
             return;
